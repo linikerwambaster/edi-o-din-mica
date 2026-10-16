@@ -113,6 +113,27 @@
   }
   if (C.dicaRolagem > 0) setTimeout(function () { $("#rolar").classList.add("ver"); }, C.dicaRolagem * 1000);
 
+  /* TRAVA: a página abaixo do vídeo aparece quando a VSL chega em C.liberaEm segundos (com ou sem som).
+     Sem trava configurada, com player externo ou se o vídeo não carregar, a página fica livre. */
+  var libera = function () {
+    if (!doc.classList.contains("trava")) return;
+    doc.classList.remove("trava");
+    doc.classList.add("liberou");
+    try { localStorage.setItem("lp_liberada", "1"); } catch (e) {}
+    $("#rolar").classList.add("ver");
+  };
+  if (!(C.liberaEm > 0) || C.vslEmbed || !vsl) libera();
+  else {
+    vsl.addEventListener("timeupdate", function () { if (vsl.currentTime >= C.liberaEm) libera(); });
+    vsl.addEventListener("error", libera);
+    var fonteVsl = vsl.querySelector("source");
+    if (fonteVsl) fonteVsl.addEventListener("error", libera);
+  }
+  // link de remarketing com ?oferta: abre liberado e já na oferta
+  if (/[?&]oferta(=|&|$)/.test(location.search)) {
+    setTimeout(function () { var o = $("#oferta"); if (o) o.scrollIntoView({ behavior: "auto", block: "start" }); }, 250);
+  }
+
   /* =====================================================================
      ANIMAÇÕES
      ===================================================================== */

@@ -17,7 +17,16 @@
 <link rel="preload" as="image" href="/assets/videos/vsl-capa.jpg">
 <link rel="icon" type="image/png" href="/assets/img/favicon.png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
-<script>document.documentElement.classList.add("js");</script>
+<script>
+/* TRAVA da VSL: o conteúdo abaixo do vídeo só aparece quando a pessoa chega no ponto da oferta (liberaEm no LP_CONFIG).
+   Quem já liberou antes (remarketing) ou chega com ?oferta no link vê tudo na hora. */
+(function (d) {
+  d.classList.add("js");
+  var livre = /[?&]oferta(=|&|$)/.test(location.search) || location.hash === "#oferta";
+  try { livre = livre || localStorage.getItem("lp_liberada") === "1"; } catch (e) {}
+  if (!livre) d.classList.add("trava");
+})(document.documentElement);
+</script>
 <!-- Se preferir colar o código padrão do Pixel aqui, deixe "pixelId" vazio no LP_CONFIG para não carregar duas vezes. -->
 </head>
 <body>
@@ -32,7 +41,7 @@
   <div class="player-moldura">
     <div class="player" id="player">
       <video id="vsl" playsinline autoplay muted preload="metadata" poster="/assets/videos/vsl-capa.jpg">
-        <source src="/assets/videos/vsl-provisoria.mp4" type="video/mp4">
+        <source src="/assets/videos/vsl.mp4" type="video/mp4">
       </video>
       <button class="ouvir" id="ouvir" type="button" aria-label="Ativar o som e assistir desde o começo">
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>Toque para ouvir</span>
@@ -152,9 +161,11 @@
     </div>
     <div class="trilho" id="trilho">
       <figure class="peca" style="margin:0"><div class="tela" style="background-image:url(/assets/videos/skill-a.jpg)"><video data-src="/assets/videos/skill-a.mp4" poster="/assets/videos/skill-a.jpg" muted loop playsinline preload="none"></video><span class="tag skill">FEITO PELA SKILL</span></div><figcaption class="desc">Checklist e chips aparecendo junto com a fala.</figcaption></figure>
+      <figure class="peca" style="margin:0"><div class="tela" style="background-image:url(/assets/videos/crt-legenda.jpg)"><video data-src="/assets/videos/crt-legenda.mp4" poster="/assets/videos/crt-legenda.jpg" muted loop playsinline preload="none"></video><span class="tag skill">FEITO PELA SKILL</span></div><figcaption class="desc">Legenda básica e dinâmica, trocada na hora em que eu peço.</figcaption></figure>
       <figure class="peca" style="margin:0"><div class="tela" style="background-image:url(/assets/videos/promo-camadas.jpg)"><video data-src="/assets/videos/promo-camadas.mp4" poster="/assets/videos/promo-camadas.jpg" muted loop playsinline preload="none"></video><span class="tag">PROMO · CLAUDE CODE</span></div><figcaption class="desc">A cena se abre em camadas de vidro.</figcaption></figure>
       <figure class="peca" style="margin:0"><div class="tela" style="background-image:url(/assets/videos/airfryer-a.jpg)"><video data-src="/assets/videos/airfryer-a.mp4" poster="/assets/videos/airfryer-a.jpg" muted loop playsinline preload="none"></video><span class="tag">ANÚNCIO · CLAUDE CODE</span></div><figcaption class="desc">Anúncio de produto com gancho e passos acelerados.</figcaption></figure>
       <figure class="peca" style="margin:0"><div class="tela" style="background-image:url(/assets/videos/skill-b.jpg)"><video data-src="/assets/videos/skill-b.mp4" poster="/assets/videos/skill-b.jpg" muted loop playsinline preload="none"></video><span class="tag skill">FEITO PELA SKILL</span></div><figcaption class="desc">Cartões que entram quando você fala o assunto.</figcaption></figure>
+      <figure class="peca" style="margin:0"><div class="tela" style="background-image:url(/assets/videos/crt-cartoes.jpg)"><video data-src="/assets/videos/crt-cartoes.mp4" poster="/assets/videos/crt-cartoes.jpg" muted loop playsinline preload="none"></video><span class="tag skill">FEITO PELA SKILL</span></div><figcaption class="desc">Um cartão para cada público que eu cito.</figcaption></figure>
       <figure class="peca" style="margin:0"><div class="tela" style="background-image:url(/assets/videos/promo-abertura.jpg)"><video data-src="/assets/videos/promo-abertura.mp4" poster="/assets/videos/promo-abertura.jpg" muted loop playsinline preload="none"></video><span class="tag">ABERTURA · CLAUDE CODE</span></div><figcaption class="desc">Abertura com cenário em 3D se montando.</figcaption></figure>
       <figure class="peca" style="margin:0"><div class="tela" style="background-image:url(/assets/videos/airfryer-b.jpg)"><video data-src="/assets/videos/airfryer-b.mp4" poster="/assets/videos/airfryer-b.jpg" muted loop playsinline preload="none"></video><span class="tag">ANÚNCIO · CLAUDE CODE</span></div><figcaption class="desc">Receita em 9 segundos, pronta para anúncio.</figcaption></figure>
     </div>
@@ -324,15 +335,18 @@
    preco        Aparece na página toda e vai no valor do InitiateCheckout. Ex.: "97" ou "47".
    vslEmbed     Código de incorporação do player da VSL (Vturb, Panda...). Vazio = usa o arquivo de vídeo abaixo.
    vslArquivo   Vídeo próprio da VSL (em /assets/videos). Com arquivo próprio, a página mede quanto cada pessoa assistiu.
-   dicaRolagem  Segundos até aparecer "role para ver" embaixo do vídeo (0 = nunca). */
+   dicaRolagem  Segundos até aparecer "role para ver" embaixo do vídeo (0 = nunca).
+   liberaEm     Segundo da VSL em que o resto da página aparece (0 = página livre desde o começo).
+                Quem já liberou uma vez, ou entra pelo link com ?oferta no final, vê tudo na hora. */
 window.LP_CONFIG = {
   pixelId: "",
   capi: "/api/capi",
   checkout: "",
   preco: "97",
   vslEmbed: "",
-  vslArquivo: "/assets/videos/vsl-provisoria.mp4",
+  vslArquivo: "/assets/videos/vsl.mp4",
   dicaRolagem: 25,
+  liberaEm: 169,
 };
 </script>
 <script src="/assets/js/site.js" defer></script>

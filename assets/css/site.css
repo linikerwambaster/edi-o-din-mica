@@ -352,3 +352,8 @@ footer .assina img { width: 28px; height: auto; }
   .cena .ok, .cena .term-m .ok { opacity: 1; }
   .cena-baixa .barra-b i { width: 100%; }
 }
+
+/* ---------- trava da VSL: só o vídeo até a pessoa chegar no ponto da oferta ---------- */
+.trava main, .trava footer, .trava .fixa, .trava .rolar { display: none !important; }
+.liberou main { animation: aparece .9s cubic-bezier(.2, .9, .3, 1) both; }
+@keyframes aparece { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }

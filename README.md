@@ -7,7 +7,7 @@ index.html            página (o bloco LP_CONFIG fica no fim do arquivo)
 privacidade.html      política de privacidade (link no rodapé)
 assets/css/site.css   visual e animações
 assets/js/site.js     animações + rastreamento (Pixel, API de Conversões, UTMs, retenção da VSL)
-assets/videos/        VSL provisória, antes/depois e galeria
+assets/videos/        VSL (vsl.mp4 + capa), antes/depois e galeria
 api/capi.js           função da Vercel que envia os eventos para a Meta pelo servidor
 vercel.json           cache dos arquivos
 ```
@@ -21,6 +21,9 @@ vercel.json           cache dos arquivos
 | `preco` | `"97"` ou `"47"` (muda na página inteira e no valor do InitiateCheckout) |
 | `vslEmbed` | código de incorporação do player da VSL (Vturb, Panda...). Vazio = usa `vslArquivo` |
 | `vslArquivo` | caminho do vídeo da VSL hospedado aqui mesmo (`/assets/videos/...`) |
+| `liberaEm` | segundo da VSL em que o resto da página aparece (trava de rolagem). `0` = página livre |
+
+**Trava da VSL:** até a VSL chegar em `liberaEm`, a página mostra só o vídeo (não dá para rolar). Quem já liberou uma vez vê tudo na hora quando volta (remarketing), e o link com `?oferta` no final (ex.: `https://skill.linikerwambasterr.com.br/?oferta`) abre liberado e já na oferta: use esse link nos anúncios para quem assistiu 75% ou 95%.
 
 ## 2. Subir no GitHub e na Vercel
 
