@@ -295,12 +295,11 @@ footer { border-top: 1px solid var(--linha); padding-block: 28px calc(110px + en
 footer .miolo { display: flex; flex-wrap: wrap; gap: 8px 22px; justify-content: space-between; align-items: center; }
 footer .assina { display: inline-flex; align-items: center; gap: 10px; }
 footer .assina img { width: 28px; height: auto; }
-.fixa { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); background: rgba(7, 13, 23, .92); backdrop-filter: blur(14px); border-top: 1px solid var(--linha); display: flex; align-items: center; justify-content: space-between; gap: 14px; translate: 0 115%; transition: translate .4s cubic-bezier(.2, .9, .3, 1); }
+.fixa { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; padding: 8px max(16px, env(safe-area-inset-right, 0px)) calc(8px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); background: rgba(7, 13, 23, .92); backdrop-filter: blur(14px); border-top: 1px solid var(--linha); display: flex; align-items: center; justify-content: space-between; gap: 14px; translate: 0 115%; transition: translate .4s cubic-bezier(.2, .9, .3, 1); }
 .fixa.ver { translate: 0 0; }
 .fixa .p { display: flex; align-items: center; gap: 10px; font: 700 15px var(--texto); line-height: 1.2; }
-.fixa .p img { width: 30px; height: auto; flex: none; }
 .fixa .p small { display: block; font: 500 12px var(--mono); color: var(--nevoa); }
-.fixa .cta { min-height: 52px; padding: 0 22px; font-size: 16px; animation: none; white-space: nowrap; flex: none; }
+.fixa .cta { min-height: 46px; padding: 0 20px; font-size: 15px; animation: none; white-space: nowrap; flex: none; }
 .fixa .p { min-width: 0; font-size: 14px; }
 .aviso { position: fixed; left: 50%; bottom: 96px; translate: -50% 0; z-index: 50; padding: 12px 18px; border-radius: 12px; background: var(--painel-2); border: 1px solid var(--ceu); font-size: 14px; max-width: calc(100vw - 32px); }
 

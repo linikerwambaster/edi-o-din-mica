@@ -183,7 +183,7 @@
   var carrega = function (v) { if (v && v.dataset.src && !v.getAttribute("src")) { v.src = v.dataset.src; } };
 
   // barra de progresso (linha do tempo) + barra fixa de compra + ViewContent
-  var progresso = $("#progresso"), enche = $("#enche"), tempo = $("#tempo"), fixa = $("#fixa"), oferta = $("#oferta");
+  var progresso = $("#progresso"), enche = $("#enche"), tempo = $("#tempo"), fixa = $("#fixa"), oferta = $("#oferta"), galeria = $("#galeria"), rodape = $("footer");
   var viuOferta = false, TOTAL = 150; // a página "dura" 02:30 na linha do tempo
   var aoRolar = function () {
     var max = document.documentElement.scrollHeight - innerHeight, y = scrollY;
@@ -195,7 +195,10 @@
     progresso.classList.toggle("ver", passou);
     var r = oferta.getBoundingClientRect();
     var naOferta = r.top < innerHeight * 0.85 && r.bottom > innerHeight * 0.15;
-    var mostra = passou && !naOferta;
+    // a barra de compra só aparece depois da galeria (não cobre o "como funciona") e some na oferta e no rodapé
+    var depoisGaleria = galeria.getBoundingClientRect().bottom < innerHeight * 0.6;
+    var noRodape = rodape.getBoundingClientRect().top < innerHeight;
+    var mostra = depoisGaleria && !naOferta && !noRodape;
     fixa.classList.toggle("ver", mostra);
     fixa.setAttribute("aria-hidden", mostra ? "false" : "true");
     $("a", fixa).tabIndex = mostra ? 0 : -1;
