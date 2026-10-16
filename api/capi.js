@@ -4,7 +4,7 @@
 //   META_PIXEL_ID        ID do Pixel (o mesmo do LP_CONFIG no index.html)
 //   META_ACCESS_TOKEN    Token da API de Conversões (Gerenciador de Eventos > Configurações > Gerar token)
 //   META_TEST_EVENT_CODE Opcional. Código de teste (aba "Testar eventos"); apague depois de testar
-//   META_API_VERSION     Opcional. Versão da Graph API (padrão: v21.0)
+//   META_API_VERSION     Opcional. Versão da Graph API (padrão: v23.0)
 
 // Eventos aceitos: padrão da Meta + retenção da VSL (personalizados, para públicos de remarketing)
 const PERMITIDOS = ["PageView", "ViewContent", "InitiateCheckout", "VSL_Play", "VSL_25", "VSL_50", "VSL_75", "VSL_95"];
@@ -39,7 +39,7 @@ module.exports = async (req, res) => {
   };
   if (process.env.META_TEST_EVENT_CODE) payload.test_event_code = process.env.META_TEST_EVENT_CODE;
 
-  const versao = process.env.META_API_VERSION || "v21.0";
+  const versao = process.env.META_API_VERSION || "v23.0";
   try {
     const r = await fetch(`https://graph.facebook.com/${versao}/${pixel}/events?access_token=${encodeURIComponent(token)}`, {
       method: "POST",

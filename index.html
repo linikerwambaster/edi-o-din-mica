@@ -3,34 +3,352 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Área do aluno</title>
-<meta name="robots" content="noindex, nofollow">
+<title>Skill Edição Dinâmica</title>
+<meta name="description" content="A skill para Claude Code que corta como editor e coloca motion no momento exato em que você fala.">
 <meta name="theme-color" content="#070D17">
+<meta property="og:title" content="Skill Edição Dinâmica">
+<meta property="og:description" content="Grave, arraste a skill para o Claude Code e peça. Ela corta como editor e coloca o motion no ritmo da sua fala.">
+<meta property="og:image" content="/assets/videos/vsl-capa.jpg">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
 <link rel="stylesheet" href="/assets/css/site.css">
-<link rel="stylesheet" href="/assets/css/area.css">
+<link rel="preload" as="image" href="/assets/videos/vsl-capa.jpg">
 <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+/* TRAVA da VSL: o conteúdo abaixo do vídeo só aparece quando a pessoa chega no ponto da oferta (liberaEm no LP_CONFIG).
+   Quem já liberou antes (remarketing) ou chega com ?oferta no link vê tudo na hora. */
+(function (d) {
+  d.classList.add("js");
+  var livre = /[?&]oferta(=|&|$)/.test(location.search) || location.hash === "#oferta";
+  try { livre = livre || localStorage.getItem("lp_liberada") === "1"; } catch (e) {}
+  if (!livre) d.classList.add("trava");
+})(document.documentElement);
+</script>
+<!-- Se preferir colar o código padrão do Pixel aqui, deixe "pixelId" vazio no LP_CONFIG para não carregar duas vezes. -->
 </head>
 <body>
 <div class="aurora" aria-hidden="true"></div>
 <div class="grao" aria-hidden="true"></div>
-<main class="miolo entrar">
-  <form class="cartao-entrar" method="post" action="/api/entrar">
-    <img src="/assets/img/logo.png" alt="Liniker Wambaster">
-    <span class="selo-area">ÁREA DO ALUNO</span>
-    <h1 style="margin-top:16px">Edição Dinâmica</h1>
-    <p>Digite a senha que chegou no seu e-mail de compra.</p>
-    <label for="senha" class="micro" style="position:absolute;left:-9999px">Senha</label>
-    <input class="campo" id="senha" name="senha" type="password" autocomplete="current-password" placeholder="sua senha" required autofocus>
-    <button class="cta" type="submit"><span>Entrar</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-    <p class="erro-senha" id="erro" hidden>Senha incorreta. Confira no e-mail da compra e tente de novo.</p>
-    <p class="dica-senha">Não achou o e-mail? Procure no spam ou na aba Promoções, com o assunto da sua compra na Cakto.</p>
-  </form>
+
+<!-- barra de progresso da página, como a linha do tempo de um vídeo -->
+<div class="progresso" id="progresso" aria-hidden="true"><div class="trilho-p"><div class="enche" id="enche"></div></div><span class="tempo" id="tempo">00:00</span></div>
+
+<!-- ===================== 1ª TELA: SÓ O VÍDEO ===================== -->
+<section class="vsl" id="topo" aria-label="Vídeo de apresentação">
+  <div class="player-moldura">
+    <div class="player" id="player">
+      <video id="vsl" playsinline autoplay muted preload="metadata" poster="/assets/videos/vsl-capa.jpg">
+        <source src="/assets/videos/vsl.mp4" type="video/mp4">
+      </video>
+      <button class="ouvir" id="ouvir" type="button" aria-label="Ativar o som e assistir desde o começo">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>Toque para ouvir</span>
+      </button>
+    </div>
+  </div>
+  <a class="rolar" id="rolar" href="#abertura">ROLE PARA VER<i></i></a>
+</section>
+
+<main>
+  <!-- ===================== ECO DO ANÚNCIO ===================== -->
+  <section class="secao abertura" id="abertura">
+    <div class="miolo grade">
+      <div class="pilha">
+        <span class="selo-claude sobe"><svg viewBox="0 0 40 40" aria-hidden="true"><g fill="#D97757"><rect x="18.6" y="4" width="2.8" height="14" rx="1.4"/><rect x="18.6" y="4" width="2.8" height="14" rx="1.4" transform="rotate(45 20 20)"/><rect x="18.6" y="4" width="2.8" height="14" rx="1.4" transform="rotate(90 20 20)"/><rect x="18.6" y="4" width="2.8" height="14" rx="1.4" transform="rotate(135 20 20)"/><rect x="18.6" y="4" width="2.8" height="14" rx="1.4" transform="rotate(180 20 20)"/><rect x="18.6" y="4" width="2.8" height="14" rx="1.4" transform="rotate(225 20 20)"/><rect x="18.6" y="4" width="2.8" height="14" rx="1.4" transform="rotate(270 20 20)"/><rect x="18.6" y="4" width="2.8" height="14" rx="1.4" transform="rotate(315 20 20)"/></g></svg>Skill para Claude Code</span>
+        <h1 class="cinetico" data-cinetico>Eu não vou te vender um curso. Vou te entregar a <span class="grifo marca-texto">skill que editou o vídeo</span> aí de cima.</h1>
+        <p class="lead sobe">Você grava falando com a câmera, do jeito que sair, com pausa e com erro. Arrasta a skill para o Claude Code, manda o vídeo e pede em português. Ela corta como um editor e coloca o motion no momento exato em que você fala.</p>
+        <div class="chamada sobe">
+          <a class="cta comprar" href="#oferta" data-local="abertura"><span>Quero a skill por R$&nbsp;<span class="preco-v">97</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <span class="micro">Pagamento único · Acesso imediato · Garantia de 7 dias</span>
+        </div>
+      </div>
+      <div class="janela sobe" aria-label="Exemplo de conversa com o Claude Code">
+        <div class="barra"><i></i><i></i><i></i><span>Claude Code · meu-video</span></div>
+        <div class="corpo" id="term">
+          <div class="eu"><span id="term-texto">edita esse vídeo que eu gravei pra mim</span><span class="cursor-t"></span></div>
+          <div class="ok t-linha">vídeo preparado: 1080 x 1920, áudio original</div>
+          <div class="ok t-linha">364 palavras transcritas</div>
+          <div class="ok t-linha">41 cortes: pausas, erros e repetições fora</div>
+          <div class="ok t-linha">32 efeitos no ritmo da sua fala</div>
+          <div class="t-linha" style="color:var(--papel)">Pronto. Amostra de 15 s para você aprovar.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="faixa-viva" aria-hidden="true">
+    <div class="linha-f"><span>Cortes</span><span class="ponto">●</span><span class="vazado">Legendas</span><span class="ponto">●</span><span>Texto atrás</span><span class="ponto">●</span><span class="vazado">Contadores</span><span class="ponto">●</span><span>Motion</span><span class="ponto">●</span><span class="vazado">Zoom</span><span class="ponto">●</span><span>Cortes</span><span class="ponto">●</span><span class="vazado">Legendas</span><span class="ponto">●</span><span>Texto atrás</span><span class="ponto">●</span><span class="vazado">Contadores</span><span class="ponto">●</span><span>Motion</span><span class="ponto">●</span><span class="vazado">Zoom</span><span class="ponto">●</span></div>
+    <div class="linha-f volta"><span class="vazado">Sem editor</span><span class="ponto">●</span><span>Sem aula</span><span class="ponto">●</span><span class="vazado">No seu computador</span><span class="ponto">●</span><span>Em português</span><span class="ponto">●</span><span class="vazado">Sem editor</span><span class="ponto">●</span><span>Sem aula</span><span class="ponto">●</span><span class="vazado">No seu computador</span><span class="ponto">●</span><span>Em português</span><span class="ponto">●</span></div>
+  </div>
+
+  <!-- ===================== EMPATIA ===================== -->
+  <section class="secao">
+    <div class="miolo pilha">
+      <span class="tc sobe">00:12 <b>/ o depois da gravação</b></span>
+      <h2 class="cinetico" data-cinetico>Gravar você já sabe. O problema sempre foi o depois.</h2>
+      <div class="dores sobe" id="dores">
+        <div class="dor" style="--i:0"><span class="tempo">2h</span><p>Cortando pausa por pausa, ouvindo a mesma frase dez vezes para achar a tomada boa.</p></div>
+        <div class="dor" style="--i:1"><span class="tempo">1h</span><p>Ajustando legenda palavra por palavra, no tempo certo.</p></div>
+        <div class="dor" style="--i:2"><span class="tempo">3 dias</span><p>Esperando o editor devolver, para ainda pedir ajuste.</p></div>
+        <div class="dor" style="--i:3"><span class="tempo">sempre</span><p>Vendo o vídeo dos outros cheio de motion e o seu parado, só você falando.</p></div>
+      </div>
+      <span class="tesoura sobe">✂ A SKILL CORTA TUDO ISSO</span>
+      <p class="sonho sobe">Agora imagina terminar de gravar e, minutos depois, ver o seu vídeo com cara de editor profissional saindo do seu próprio computador.</p>
+    </div>
+  </section>
+
+  <!-- ===================== MECANISMO ===================== -->
+  <section class="secao">
+    <div class="miolo pilha">
+      <span class="tc sobe">00:27 <b>/ o mecanismo</b></span>
+      <h2 class="cinetico" data-cinetico>Edição guiada <span class="grifo">pela fala.</span></h2>
+      <p class="lead sobe">A skill escuta o seu vídeo palavra por palavra. Primeiro faz o trabalho de editor: tira pausas, erros e frases repetidas, ficando com a melhor tomada. Depois lê o que você disse e ilustra cada frase no exato momento em que ela é dita.</p>
+      <div class="mec-grade">
+        <div class="falas sobe">
+          <div class="fala"><span class="quem">VOCÊ DIZ</span><q>Você que é gestor de tráfego...</q><span class="efeito" style="--i:0">cartão "GESTOR DE TRÁFEGO" entra</span></div>
+          <div class="fala"><span class="quem">VOCÊ DIZ</span><q>...você pode ficar para trás.</q><span class="efeito" style="--i:1">"PARA TRÁS" passa atrás da sua cabeça</span></div>
+          <div class="fala"><span class="quem">VOCÊ DIZ</span><q>Já tenho mais de 6 anos...</q><span class="efeito" style="--i:2">contador sobe de 01 até 06</span></div>
+          <div class="fala"><span class="quem">VOCÊ DIZ</span><q>Agora uma legenda dinâmica.</q><span class="efeito" style="--i:3">a legenda troca de estilo ali</span></div>
+          <div class="fala"><span class="quem">VOCÊ DIZ</span><q>Toque em saiba mais.</q><span class="efeito" style="--i:4">o botão pulsa na hora</span></div>
+        </div>
+        <div class="cortes sobe" aria-label="Linha do tempo com pausas sendo cortadas">
+          <div class="topo"><span>CORTES DE EDITOR</span><strong>01:58 → 01:37</strong></div>
+          <div class="faixa">
+            <i class="c" style="--w:12"></i><i class="p" style="--w:5;--d:0s"></i><i class="c" style="--w:9"></i><i class="p" style="--w:7;--d:.3s"></i><i class="c" style="--w:14"></i><i class="p" style="--w:4;--d:.6s"></i><i class="c" style="--w:8"></i><i class="p" style="--w:6;--d:.9s"></i><i class="c" style="--w:11"></i>
+            <span class="cabeca"></span>
+          </div>
+          <p class="legenda-c">Em vermelho, as pausas e as tomadas ruins. No vídeo do boné, a skill transformou 1min58 de gravação em 1min37 de vídeo, em 41 cortes, sem cortar palavra no meio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== COMO FUNCIONA (celular fixo) ===================== -->
+  <section class="secao" id="como">
+    <div class="miolo pilha">
+      <span class="tc sobe">00:41 <b>/ como funciona</b></span>
+      <h2 class="cinetico" data-cinetico>Baixar, arrastar, pedir.</h2>
+    </div>
+    <div class="miolo historia">
+      <div class="fone-fixo" aria-hidden="true">
+        <div class="fone">
+          <div class="cena cena-baixa ativa" data-cena="0"><div class="arquivo">.zip</div><div class="barra-b"><i></i></div><span class="rotulo-b">edicao-dinamica.zip</span></div>
+          <div class="cena cena-arrasta" data-cena="1"><div class="arquivo-m">.zip</div><div class="term-m"><div class="ok">✓ skill instalada</div><div class="ok">✓ edicao-dinamica</div></div></div>
+          <div class="cena cena-pede" data-cena="2"><div class="chat"><div class="eu">edita esse vídeo</div><div class="ok" style="--i:0">✓ vídeo preparado</div><div class="ok" style="--i:1">✓ fala transcrita</div><div class="ok" style="--i:2">✓ 41 cortes</div><div class="ok" style="--i:3">✓ 32 efeitos</div><div class="ok" style="--i:4">✓ amostra de 15 s</div></div></div>
+          <div class="cena cena-pronto" data-cena="3"><video data-src="/assets/videos/depois.mp4" poster="/assets/videos/depois.jpg" muted loop playsinline preload="none"></video></div>
+        </div>
+      </div>
+      <div class="etapas">
+        <div class="etapa ativa" data-etapa="0"><div class="cartao-e"><span class="n">PASSO 1</span><h3>Baixe a skill</h3><p>Na hora da compra você recebe o arquivo e o guia de instalação.</p></div></div>
+        <div class="etapa" data-etapa="1"><div class="cartao-e"><span class="n">PASSO 2</span><h3>Arraste para o Claude Code</h3><p>Uma vez só. Daí em diante ela fica lá, pronta para cada vídeo que você gravar.</p></div></div>
+        <div class="etapa" data-etapa="2"><div class="cartao-e"><span class="n">PASSO 3</span><h3>Peça em português</h3><p>"Edita esse vídeo." Ela prepara, transcreve, corta e monta o motion seguindo a sua fala.</p></div></div>
+        <div class="etapa" data-etapa="3"><div class="cartao-e"><span class="n">PASSO 4</span><h3>Aprove e poste</h3><p>Primeiro ela te mostra 15 segundos. Você aprova ou pede ajuste, e ela entrega o vídeo inteiro.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== GALERIA ===================== -->
+  <section class="secao" id="galeria">
+    <div class="miolo pilha">
+      <span class="tc sobe">00:58 <b>/ feito no Claude Code</b></span>
+      <div class="galeria-topo">
+        <h2 class="cinetico" data-cinetico>Arraste para o lado e veja.</h2>
+        <div class="setas"><button type="button" id="ant" aria-label="Vídeo anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" id="prox" aria-label="Próximo vídeo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button></div>
+      </div>
+      <p class="lead sobe" style="font-size:17px">Os vídeos de boné foram editados do zero pela skill. Os outros eu editei conversando com o Claude Code do mesmo jeito: pedindo em português.</p>
+    </div>
+    <div class="trilho" id="trilho">
+      <figure class="peca" style="margin:0"><div class="tela" style="background-image:url(/assets/videos/skill-a.jpg)"><video data-src="/assets/videos/skill-a.mp4" poster="/assets/videos/skill-a.jpg" muted loop playsinline preload="none"></video><span class="tag skill">FEITO PELA SKILL</span></div><figcaption class="desc">Checklist e chips aparecendo junto com a fala.</figcaption></figure>
+      <figure class="peca" style="margin:0"><div class="tela" style="background-image:url(/assets/videos/crt-legenda.jpg)"><video data-src="/assets/videos/crt-legenda.mp4" poster="/assets/videos/crt-legenda.jpg" muted loop playsinline preload="none"></video><span class="tag skill">FEITO PELA SKILL</span></div><figcaption class="desc">Legenda básica e dinâmica, trocada na hora em que eu peço.</figcaption></figure>
+      <figure class="peca" style="margin:0"><div class="tela" style="background-image:url(/assets/videos/promo-camadas.jpg)"><video data-src="/assets/videos/promo-camadas.mp4" poster="/assets/videos/promo-camadas.jpg" muted loop playsinline preload="none"></video><span class="tag">PROMO · CLAUDE CODE</span></div><figcaption class="desc">A cena se abre em camadas de vidro.</figcaption></figure>
+      <figure class="peca" style="margin:0"><div class="tela" style="background-image:url(/assets/videos/airfryer-a.jpg)"><video data-src="/assets/videos/airfryer-a.mp4" poster="/assets/videos/airfryer-a.jpg" muted loop playsinline preload="none"></video><span class="tag">ANÚNCIO · CLAUDE CODE</span></div><figcaption class="desc">Anúncio de produto com gancho e passos acelerados.</figcaption></figure>
+      <figure class="peca" style="margin:0"><div class="tela" style="background-image:url(/assets/videos/skill-b.jpg)"><video data-src="/assets/videos/skill-b.mp4" poster="/assets/videos/skill-b.jpg" muted loop playsinline preload="none"></video><span class="tag skill">FEITO PELA SKILL</span></div><figcaption class="desc">Cartões que entram quando você fala o assunto.</figcaption></figure>
+      <figure class="peca" style="margin:0"><div class="tela" style="background-image:url(/assets/videos/crt-cartoes.jpg)"><video data-src="/assets/videos/crt-cartoes.mp4" poster="/assets/videos/crt-cartoes.jpg" muted loop playsinline preload="none"></video><span class="tag skill">FEITO PELA SKILL</span></div><figcaption class="desc">Um cartão para cada público que eu cito.</figcaption></figure>
+      <figure class="peca" style="margin:0"><div class="tela" style="background-image:url(/assets/videos/promo-abertura.jpg)"><video data-src="/assets/videos/promo-abertura.mp4" poster="/assets/videos/promo-abertura.jpg" muted loop playsinline preload="none"></video><span class="tag">ABERTURA · CLAUDE CODE</span></div><figcaption class="desc">Abertura com cenário em 3D se montando.</figcaption></figure>
+      <figure class="peca" style="margin:0"><div class="tela" style="background-image:url(/assets/videos/airfryer-b.jpg)"><video data-src="/assets/videos/airfryer-b.mp4" poster="/assets/videos/airfryer-b.jpg" muted loop playsinline preload="none"></video><span class="tag">ANÚNCIO · CLAUDE CODE</span></div><figcaption class="desc">Receita em 9 segundos, pronta para anúncio.</figcaption></figure>
+    </div>
+    <div class="pontos" id="pontos" aria-hidden="true"></div>
+  </section>
+
+  <!-- ===================== ANTES E DEPOIS ===================== -->
+  <section class="secao">
+    <div class="miolo prova-grade">
+      <div class="pilha">
+        <span class="tc sobe">01:14 <b>/ antes e depois</b></span>
+        <h2 class="cinetico" data-cinetico>O mesmo arquivo do celular. Antes e depois.</h2>
+        <p class="lead sobe">Gravado no iPhone e editado do zero só com a skill, num notebook comum. A imagem e a voz ficam como você gravou: nada de filtro, nada de efeito na voz.</p>
+        <div class="numeros sobe" id="numeros">
+          <div class="num"><strong data-conta="01:58">00:00</strong><span>gravados no celular</span></div>
+          <div class="num"><strong data-conta="41">0</strong><span>cortes de editor</span></div>
+          <div class="num"><strong data-conta="32">0</strong><span>efeitos guiados pela fala</span></div>
+          <div class="num"><strong data-conta="01:37">00:00</strong><span>de vídeo final</span></div>
+        </div>
+      </div>
+      <div class="comparar sobe">
+        <div class="alternar" id="alternar" role="group" aria-label="Mostrar antes ou depois">
+          <span class="pilula"></span>
+          <button type="button" aria-pressed="true" data-lado="antes">ANTES</button>
+          <button type="button" aria-pressed="false" data-lado="depois">DEPOIS</button>
+        </div>
+        <div class="tela-ab">
+          <video id="v-antes" data-src="/assets/videos/antes.mp4" poster="/assets/videos/antes.jpg" muted loop playsinline preload="none"></video>
+          <video id="v-depois" class="oculto" data-src="/assets/videos/depois.mp4" poster="/assets/videos/depois.jpg" muted loop playsinline preload="none"></video>
+          <span class="selo" id="selo-ab">O QUE EU GRAVEI</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== O QUE ELA FAZ ===================== -->
+  <section class="secao">
+    <div class="miolo pilha">
+      <span class="tc sobe">01:30 <b>/ o que entra no seu vídeo</b></span>
+      <h2 class="cinetico" data-cinetico>Tudo o que você viu, no seu vídeo.</h2>
+      <div class="catalogo sobe">
+        <div class="item"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.1 15.9M14.5 14.5L20 20M8.1 8.1L12 12"/></svg></span><h3>Cortes de editor</h3><p>Pausa, erro e frase repetida saem. Fica a melhor tomada.</p></div>
+        <div class="item"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 13h4M13 13h4M7 16h10"/></svg></span><h3>Legenda simples ou dinâmica</h3><p>Frase a frase ou palavra em destaque. Você escolhe falando.</p></div>
+        <div class="item"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7V5h16v2M9 19h6M12 5v14"/></svg></span><h3>Texto atrás de você</h3><p>A palavra passa por trás da sua cabeça, no seu fundo real.</p></div>
+        <div class="item"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><h3>Cartões e contadores</h3><p>Falou um número ou um público, ele aparece.</p></div>
+        <div class="item"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3zM5 11a7 7 0 0 0 14 0M12 18v4"/></svg></span><h3>Seu prompt na tela</h3><p>O pedido digitando, com a onda da sua voz de verdade.</p></div>
+        <div class="item"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg></span><h3>Editando ao vivo</h3><p>A barra que conta cada comando executado.</p></div>
+        <div class="item"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span><h3>Zoom em cada corte</h3><p>O enquadramento alterna e dá ritmo à fala.</p></div>
+        <div class="item"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span><h3>Chamada final</h3><p>"Toque em saiba mais" pulsando quando você pede o clique.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== QUEM ESTÁ POR TRÁS ===================== -->
+  <section class="secao">
+    <div class="miolo autor">
+      <div class="retrato sobe">
+        <div class="foto"><img src="/assets/img/liniker.jpg" alt="Liniker Wambaster" loading="lazy" width="640" height="800"></div>
+        <div class="selo-lw"><img src="/assets/img/logo.png" alt="" width="240" height="201"></div>
+      </div>
+      <div class="pilha">
+        <span class="tc sobe">01:37 <b>/ quem está por trás</b></span>
+        <h2 class="cinetico" data-cinetico>Prazer, <span class="grifo">Liniker.</span></h2>
+        <div class="chips sobe"><span>GESTOR DE TRÁFEGO</span><span>+6 ANOS EM ANÚNCIOS</span></div>
+        <p class="fala-autor sobe">Eu vivo de anúncio, então vivo de vídeo. Durante anos eu gravava, mandava para o editor e esperava. Hoje eu gravo, peço para o Claude Code e aprovo.</p>
+        <p class="lead sobe">A skill que você vai receber é a mesma que editou os vídeos de boné desta página.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CURSO X SKILL ===================== -->
+  <section class="secao clara">
+    <div class="miolo pilha">
+      <span class="tc sobe">01:44 <b>/ curso ou ferramenta</b></span>
+      <h2 class="cinetico" data-cinetico>O mercado te vende aula. <span class="grifo">Aula não edita vídeo.</span></h2>
+      <p class="lead sobe">Os cursos de edição com IA custam R$&nbsp;197, R$&nbsp;297. Você assiste horas de aula e, no fim, o trabalho continua com você: instalar, configurar, escrever prompt, errar e refazer a cada vídeo.</p>
+      <div class="versus sobe">
+        <div class="lado curso"><span class="rotulo">CURSO DE EDIÇÃO COM IA</span><span class="valor">R$ 197 a 297</span><ul><li>Horas de aula para assistir</li><li>Você monta o processo sozinho</li><li>Cada vídeo começa do zero</li></ul></div>
+        <div class="lado nosso"><span class="rotulo" style="color:var(--ceu)">A SKILL EDIÇÃO DINÂMICA</span><span class="valor">R$ <span class="preco-v">97</span></span><ul><li>Instala em minutos, uma vez só</li><li>O processo de editor já vem dentro</li><li>Você grava, pede e aprova</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== OFERTA ===================== -->
+  <section class="secao" id="oferta">
+    <div class="miolo pilha">
+      <span class="tc sobe">02:01 <b>/ a oferta</b></span>
+      <h2 class="cinetico" data-cinetico>Não vou te prometer viralizar. <span class="grifo">Vou te entregar o editor.</span></h2>
+      <p class="lead sobe">O que viraliza é o que você fala. O que a skill garante é o resto: o vídeo cortado, legendado e com motion, com cara de profissional, toda vez que você gravar.</p>
+      <div class="caixa sobe">
+        <div class="recebe">
+          <h3 style="font-size:24px">O que você recebe</h3>
+          <ul>
+            <li><div>Skill Edição Dinâmica<span>A pasta que você arrasta para o Claude Code, com o processo completo de editor.</span></div></li>
+            <li><div>Guia de instalação passo a passo<span>Windows e Mac, do zero até o primeiro vídeo editado.</span></div></li>
+            <li><div>O plano de edição real do vídeo do boné<span>Os 41 cortes e os 32 efeitos, para você ver como a skill pensa.</span></div></li>
+            <li><div>Guia de gravação<span>Como gravar para a edição ficar boa, e como "falar a edição".</span></div></li>
+          </ul>
+        </div>
+        <div class="preco" id="preco">
+          <span class="mercado">Cursos de edição com IA: <span class="riscado" style="--d:.2s">R$ 297</span><span class="riscado" style="--d:.6s">R$ 197</span></span>
+          <span class="valor-grande"><small>R$</small><span class="preco-v">97</span></span>
+          <span class="micro">PAGAMENTO ÚNICO</span>
+          <a class="cta comprar" href="#oferta" data-local="oferta">Quero a skill agora<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <span class="requisito">Você precisa do Claude Code (assinatura da Anthropic) e de um computador Windows ou Mac.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== GARANTIA ===================== -->
+  <section class="secao">
+    <div class="miolo estreito garantia sobe">
+      <div class="selo7"><svg viewBox="0 0 132 132" aria-hidden="true"><defs><path id="circ" d="M66 66m-54 0a54 54 0 1 1 108 0a54 54 0 1 1-108 0"/></defs><circle cx="66" cy="66" r="63" fill="none" stroke="rgba(143,207,239,.45)" stroke-width="1.5" stroke-dasharray="4 6"/><text font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" letter-spacing="3" fill="#94A9BF"><textPath href="#circ">GARANTIA INCONDICIONAL · GARANTIA INCONDICIONAL ·</textPath></text></svg><div>7<small>DIAS</small></div></div>
+      <div class="pilha" style="gap:12px">
+        <h2 style="font-size:clamp(28px,6vw,40px)">Testa no seu vídeo. Se não gostar, devolvo.</h2>
+        <p class="lead" style="font-size:17px">Instalou, editou o seu vídeo e não era o que você queria? Pede o reembolso dentro de 7 dias e recebe o valor inteiro de volta.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <section class="secao">
+    <div class="miolo estreito pilha">
+      <span class="tc sobe">02:15 <b>/ perguntas</b></span>
+      <h2 class="cinetico" data-cinetico>Antes de comprar</h2>
+      <div class="faq sobe">
+        <details><summary>Preciso saber programar?</summary><p>Não. Você conversa em português com o Claude Code. Se faltar alguma ferramenta no seu computador, ele mesmo instala.</p></details>
+        <details><summary>Funciona com vídeo gravado no celular?</summary><p>Sim. O vídeo do boné foi gravado no iPhone, em 4K HDR. A skill converte as cores do jeito certo e mantém o áudio original.</p></details>
+        <details><summary><span>Tem custo além dos R$&nbsp;<span class="preco-v">97</span>?</span></summary><p>Só a assinatura do Claude Code, que você contrata direto com a Anthropic. O resto roda no seu computador com ferramentas gratuitas. O Remotion, que monta o vídeo, é gratuito para pessoas e empresas de até 3 pessoas.</p></details>
+        <details><summary>Meu computador dá conta?</summary><p>Um notebook comum com Windows ou Mac dá. A transcrição usa a placa de vídeo, como a maioria dos computadores dos últimos anos. No vídeo do boné, do arquivo do iPhone ao vídeo final, o computador trabalhou cerca de 15 minutos.</p></details>
+        <details><summary>Serve para que tipo de vídeo?</summary><p>Vídeos verticais em que você fala para a câmera: Reels, TikTok, Shorts e anúncios.</p></details>
+        <details><summary>É um curso?</summary><p>Não. É a ferramenta pronta, com um guia curto de instalação. Você não precisa assistir aula para editar o primeiro vídeo.</p></details>
+        <details><summary>E se eu não gostar?</summary><p>Você tem 7 dias para pedir o reembolso e recebe o valor inteiro de volta.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FECHO ===================== -->
+  <section class="secao fecho">
+    <div class="miolo estreito pilha">
+      <h2 class="cinetico" data-cinetico>Seu próximo vídeo já pode sair editado.</h2>
+      <p class="lead sobe" style="margin-inline:auto">Grava, arrasta, pede. O resto é com a skill.</p>
+      <a class="cta comprar sobe" href="#oferta" data-local="fecho"><span>Quero a skill por R$&nbsp;<span class="preco-v">97</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <span class="micro">Pagamento único · Acesso imediato · Garantia de 7 dias</span>
+    </div>
+  </section>
 </main>
+
+<footer>
+  <div class="miolo">
+    <span class="assina"><img src="/assets/img/logo.png" alt="" width="240" height="201">© 2026 Liniker Wambaster · Gestor de tráfego · <a href="/privacidade">Privacidade</a></span>
+    <span>Produto independente, sem vínculo com a Anthropic. Claude e Claude Code são marcas da Anthropic.</span>
+  </div>
+</footer>
+
+<div class="fixa" id="fixa" aria-hidden="true">
+  <span class="p"><span>Skill Edição Dinâmica<small>R$ <span class="preco-v">97</span> · pagamento único</small></span></span>
+  <a class="cta comprar" href="#oferta" tabindex="-1" data-local="barra">Quero a skill</a>
+</div>
+
 <script>
-if (/[?&]erro=1/.test(location.search)) document.getElementById("erro").hidden = false;
+/* ===================== CONFIGURAÇÃO: TROQUE AQUI =====================
+   pixelId      ID do seu Pixel da Meta (o mesmo das variáveis da Vercel). Vazio = sem pixel.
+   capi         Função da Vercel que manda os eventos pela API de Conversões (api/capi.js). Vazio = só o pixel.
+   checkout     Link do checkout (Cakto, Hotmart...). Os UTMs e o fbclid do anúncio vão junto automaticamente.
+   preco        Aparece na página toda e vai no valor do InitiateCheckout. Ex.: "97" ou "47".
+   vslEmbed     Código de incorporação do player da VSL (Vturb, Panda...). Vazio = usa o arquivo de vídeo abaixo.
+   vslArquivo   Vídeo próprio da VSL (em /assets/videos). Com arquivo próprio, a página mede quanto cada pessoa assistiu.
+   dicaRolagem  Segundos até aparecer "role para ver" embaixo do vídeo (0 = nunca).
+   liberaEm     Segundo da VSL em que o resto da página aparece (0 = página livre desde o começo).
+                Quem já liberou uma vez, ou entra pelo link com ?oferta no final, vê tudo na hora. */
+window.LP_CONFIG = {
+  pixelId: "1845495106464453",
+  capi: "/api/capi",
+  checkout: "https://pay.cakto.com.br/j6xz4hq_1210253",
+  preco: "97",
+  vslEmbed: "",
+  vslArquivo: "/assets/videos/vsl.mp4",
+  dicaRolagem: 25,
+  liberaEm: 19,
+};
 </script>
+<script src="/assets/js/site.js" defer></script>
 </body>
 </html>

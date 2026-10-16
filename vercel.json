@@ -1,7 +1,16 @@
 {
   "cleanUrls": true,
+  "rewrites": [
+    { "source": "/edicao-magnetica/aulas", "destination": "/api/area" },
+    { "source": "/edicao-magnetica/baixar", "destination": "/api/baixar" }
+  ],
+  "functions": {
+    "api/area.js": { "includeFiles": "api/_privado/**" },
+    "api/baixar.js": { "includeFiles": "api/_privado/**" }
+  },
   "headers": [
     { "source": "/assets/videos/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }] },
-    { "source": "/assets/(css|js)/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }] }
+    { "source": "/assets/(css|js)/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }] },
+    { "source": "/edicao-magnetica(.*)", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }] }
   ]
 }

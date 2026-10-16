@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Área do aluno · Edição Dinâmica</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#070D17">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/area.css">
+<link rel="icon" type="image/png" href="/assets/img/favicon.png">
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grao" aria-hidden="true"></div>
+
+<div class="miolo estreito">
+  <header class="area-topo">
+    <span class="marca"><img src="/assets/img/logo.png" alt="">Edição Dinâmica</span>
+    <span class="selo-area">ÁREA DO ALUNO</span>
+  </header>
+
+  <section class="boas">
+    <span class="tc">00:00 <b>/ começa aqui</b></span>
+    <h1 class="cinetico">Seu editor <span class="grifo">chegou.</span></h1>
+    <p class="lead">Assista o vídeo de 1 minuto, baixe a skill e siga os 5 passos. Marque cada passo quando terminar: a barra lá em cima vai enchendo.</p>
+    <div class="trio"><span><b>1</b>Baixa</span><span><b>2</b>Arrasta</span><span><b>3</b>Pede</span></div>
+    <div class="palco">
+      <div class="tela-tutorial">
+        <video src="/assets/videos/tutorial.mp4" poster="/assets/videos/tutorial.jpg" controls playsinline preload="metadata"></video>
+      </div>
+      <div class="baixar">
+        <a class="cta" href="/edicao-magnetica/baixar" download><span>Baixar a skill (.zip)</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M6 10l6 6 6-6M4 20h16"/></svg></a>
+        <span class="micro">Arquivo edicao-dinamica.zip · não precisa descompactar, o Claude Code faz isso</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="progresso-aluno"><div class="miolo estreito">
+  <div class="trilho"><div class="enche" id="enche"></div></div>
+  <div class="rotulo"><span>SEU PROGRESSO</span><span id="conta">0/5</span></div>
+</div></div>
+
+<main class="miolo estreito">
+  <div class="passos">
+
+    <article class="passo" data-passo="1">
+      <div class="passo-topo"><span class="num">1</span><div>
+        <h2>Tenha o Claude Code</h2>
+        <p>A skill roda dentro do Claude Code, o "modo programador" do Claude. Você precisa de:</p>
+        <ul>
+          <li>Uma assinatura do Claude que inclua o Claude Code (plano Pro ou acima).</li>
+          <li>O app do Claude no computador (Windows ou Mac): baixe em <code>claude.ai/download</code>, entre na sua conta e abra a aba <b>Code</b>.</li>
+          <li>Uns 5 GB livres no computador. Placa de vídeo ajuda, mas não é obrigatória.</li>
+        </ul>
+      </div></div>
+      <button class="feito-btn" type="button">Marcar como feito</button>
+    </article>
+
+    <article class="passo" data-passo="2">
+      <div class="passo-topo"><span class="num">2</span><div>
+        <h2>Instale a skill (arrastando)</h2>
+        <p>Abra o Claude Code numa pasta qualquer (por exemplo, uma pasta "videos" na sua Área de Trabalho). Arraste o <code>edicao-dinamica.zip</code> para a conversa e cole:</p>
+        <div class="copiar"><span>Instala essa skill pra mim na minha pasta de skills do Claude Code (descompacta em ~/.claude/skills/edicao-dinamica) e me avisa quando estiver pronta.</span><br><button type="button">Copiar pedido</button></div>
+        <div class="duas">
+          <div class="mini"><strong>Prefere fazer na mão?</strong>Descompacte a pasta <code>edicao-dinamica</code> dentro de <code>C:\Users\SEU-USUÁRIO\.claude\skills</code> (Windows) ou <code>~/.claude/skills</code> (Mac).</div>
+          <div class="mini"><strong>Como saber que deu certo?</strong>Pergunte ao Claude Code: "quais skills você tem?". A <code>edicao-dinamica</code> tem que aparecer na lista.</div>
+        </div>
+      </div></div>
+      <button class="feito-btn" type="button">Marcar como feito</button>
+    </article>
+
+    <article class="passo" data-passo="3">
+      <div class="passo-topo"><span class="num">3</span><div>
+        <h2>Grave do jeito certo</h2>
+        <p>Grave do jeito que sair. Mas estas dicas fazem a edição ficar muito melhor:</p>
+        <ul>
+          <li><b>Celular em pé</b>, na altura dos olhos, apoiado.</li>
+          <li><b>Espaço acima da cabeça</b>: é ali que entram os cartões e textos.</li>
+          <li><b>Luz de frente</b> (janela ou luminária na sua frente).</li>
+          <li><b>Errou? Pare um segundo e repita a frase inteira.</b> A edição fica com a melhor tomada.</li>
+          <li><b>Termine com a chamada</b> ("toque em saiba mais") olhando para a câmera.</li>
+        </ul>
+        <p style="margin-top:14px"><b>Fale a edição.</b> Os efeitos seguem o que você diz:</p>
+        <div class="falas">
+          <div class="fala"><span>"legenda básica"</span><em>a legenda vira simples ali</em></div>
+          <div class="fala"><span>"legenda dinâmica"</span><em>a legenda fica dinâmica</em></div>
+          <div class="fala"><span>"faz 6 anos que..."</span><em>aparece um contador</em></div>
+          <div class="fala"><span>"olha isso!"</span><em>zoom de ênfase</em></div>
+          <div class="fala"><span>"um texto atrás de mim"</span><em>a palavra passa atrás da sua cabeça</em></div>
+        </div>
+      </div></div>
+      <button class="feito-btn" type="button">Marcar como feito</button>
+    </article>
+
+    <article class="passo" data-passo="4">
+      <div class="passo-topo"><span class="num">4</span><div>
+        <h2>Peça a edição</h2>
+        <p>Arraste o arquivo do vídeo para a conversa do Claude Code e cole:</p>
+        <div class="copiar"><span>Usa a skill edicao-dinamica pra editar esse vídeo. Corta as pausas e os erros, coloca legenda dinâmica e os efeitos seguindo o que eu falo. Me mostra uma amostra de 15 segundos antes do vídeo inteiro.</span><br><button type="button">Copiar pedido</button></div>
+        <div class="duas">
+          <div class="mini"><strong>Primeira vez?</strong>Ele instala o que faltar (Node.js e ffmpeg) e baixa o modelo que transcreve a sua fala. Só demora assim na primeira vez.</div>
+          <div class="mini"><strong>Quer mais?</strong>Peça junto: "melhora o áudio e deixa a cor mais vibrante". Gravou na horizontal? Ela vira vertical acompanhando você.</div>
+        </div>
+      </div></div>
+      <button class="feito-btn" type="button">Marcar como feito</button>
+    </article>
+
+    <article class="passo" data-passo="5">
+      <div class="passo-topo"><span class="num">5</span><div>
+        <h2>Aprove e receba</h2>
+        <p>Assista a amostra e responda do jeito que você falaria com um editor:</p>
+        <div class="copiar"><span>Gostei. Só troca o cartão dos 5 aos 8 segundos por um contador e deixa a legenda um pouco mais pra cima. Depois pode fazer o vídeo inteiro.</span><br><button type="button">Copiar exemplo</button></div>
+        <p style="margin-top:12px">O vídeo final sai em <code>out/video-final.mp4</code>, em 1080 x 1920, pronto para Reels, TikTok e anúncio.</p>
+      </div></div>
+      <button class="feito-btn" type="button">Marcar como feito</button>
+    </article>
+  </div>
+
+  <section class="parabens" id="parabens">
+    <h2>Primeiro vídeo editado. 🎬</h2>
+    <p>Agora é repetir: grava, arrasta, pede. Quanto mais você "fala a edição", melhor ela fica.</p>
+  </section>
+
+  <section style="margin-bottom:40px">
+    <span class="tc">05:00 <b>/ deu algum problema?</b></span>
+    <h2 style="margin:14px 0 18px">Problemas comuns</h2>
+    <details><summary>Ele diz que o computador não roda WebGPU</summary><p>Atualize o driver da placa de vídeo e reinicie o computador. Se continuar, peça: "transcreve o vídeo pelo processador, com o faster-whisper". Ele instala e faz a transcrição sem a placa de vídeo (fica mais lento, mas funciona).</p></details>
+    <details><summary>Uma palavra saiu escrita errada na legenda</summary><p>Peça: "corrige na legenda: onde está Cloud Code, troca por Claude Code". Ele guarda a correção no plano do vídeo.</p></details>
+    <details><summary>A legenda está adiantada ou atrasada</summary><p>Diga o momento: "dos 12 aos 15 segundos a legenda está adiantada". Ele ajusta os cortes e a margem das palavras.</p></details>
+    <details><summary>O vídeo do iPhone ficou estourado ou lavado</summary><p>Peça para ele preparar o vídeo de novo com o script de preparo da skill: ele faz a conversão certa do HDR do iPhone.</p></details>
+    <details><summary>O render está demorando</summary><p>É normal: alguns minutos por minuto de vídeo num notebook comum. Por isso a amostra de 15 segundos vem antes.</p></details>
+  </section>
+
+  <footer class="rodape-area">
+    Precisa de ajuda? <span id="suporte">SEU-CONTATO-AQUI</span><br>
+    Material de uso pessoal. Por favor, não compartilhe a senha nem o arquivo.
+  </footer>
+</main>
+
+<script>
+(function () {
+  var passos = Array.prototype.slice.call(document.querySelectorAll(".passo"));
+  var feitos = {};
+  try { feitos = JSON.parse(localStorage.getItem("area_passos") || "{}") || {}; } catch (e) { feitos = {}; }
+  var salvar = function () { try { localStorage.setItem("area_passos", JSON.stringify(feitos)); } catch (e) {} };
+  var confete = function () {
+    var cores = ["#8FCFEF", "#FFB547", "#2FBF71", "#D97757", "#EAF3FA"];
+    for (var i = 0; i < 70; i++) {
+      var c = document.createElement("i");
+      c.className = "confete";
+      c.style.left = Math.random() * 100 + "vw";
+      c.style.background = cores[i % cores.length];
+      c.style.animationDelay = Math.random() * 0.6 + "s";
+      document.body.appendChild(c);
+      setTimeout(function (el) { el.remove(); }, 3400, c);
+    }
+  };
+  var atualiza = function (comemorar) {
+    var n = 0;
+    passos.forEach(function (p) {
+      var ok = !!feitos[p.dataset.passo];
+      p.classList.toggle("feito", ok);
+      p.querySelector(".feito-btn").textContent = ok ? "✓ Feito" : "Marcar como feito";
+      if (ok) n++;
+    });
+    document.getElementById("enche").style.width = (n / passos.length) * 100 + "%";
+    document.getElementById("conta").textContent = n + "/" + passos.length;
+    var tudo = n === passos.length;
+    document.getElementById("parabens").classList.toggle("ver", tudo);
+    if (tudo && comemorar) confete();
+  };
+  passos.forEach(function (p) {
+    p.querySelector(".feito-btn").addEventListener("click", function () {
+      feitos[p.dataset.passo] = !feitos[p.dataset.passo];
+      salvar();
+      atualiza(true);
+    });
+  });
+  Array.prototype.slice.call(document.querySelectorAll(".copiar button")).forEach(function (b) {
+    b.addEventListener("click", function () {
+      var t = b.parentNode.querySelector("span").textContent;
+      var ok = function () { var o = b.textContent; b.textContent = "Copiado!"; b.classList.add("ok"); setTimeout(function () { b.textContent = o; b.classList.remove("ok"); }, 1600); };
+      if (navigator.clipboard) navigator.clipboard.writeText(t).then(ok, ok); else ok();
+    });
+  });
+  atualiza(false);
+})();
+</script>
+</body>
+</html>

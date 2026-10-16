@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Área do aluno</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#070D17">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/area.css">
+<link rel="icon" type="image/png" href="/assets/img/favicon.png">
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grao" aria-hidden="true"></div>
+<main class="miolo entrar">
+  <form class="cartao-entrar" method="post" action="/api/entrar">
+    <img src="/assets/img/logo.png" alt="Liniker Wambaster">
+    <span class="selo-area">ÁREA DO ALUNO</span>
+    <h1 style="margin-top:16px">Edição Dinâmica</h1>
+    <p>Digite a senha que chegou no seu e-mail de compra.</p>
+    <label for="senha" class="micro" style="position:absolute;left:-9999px">Senha</label>
+    <input class="campo" id="senha" name="senha" type="password" autocomplete="current-password" placeholder="sua senha" required autofocus>
+    <button class="cta" type="submit"><span>Entrar</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    <p class="erro-senha" id="erro" hidden>Senha incorreta. Confira no e-mail da compra e tente de novo.</p>
+    <p class="dica-senha">Não achou o e-mail? Procure no spam ou na aba Promoções, com o assunto da sua compra na Cakto.</p>
+  </form>
+</main>
+<script>
+if (/[?&]erro=1/.test(location.search)) document.getElementById("erro").hidden = false;
+</script>
+</body>
+</html>

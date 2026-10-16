@@ -73,3 +73,19 @@ Hoje o domínio principal mostra o seu site de tráfego (Netlify). Para não mex
 1. Coloque `META_TEST_EVENT_CODE` na Vercel e abra a página.
 2. No Gerenciador de Eventos > **Testar eventos**: devem aparecer `PageView` (navegador e servidor), depois `VSL_Play` e os marcos ao assistir com som, `ViewContent` ao chegar na oferta e `InitiateCheckout` ao clicar em comprar.
 3. Apague `META_TEST_EVENT_CODE` e faça novo deploy.
+
+## 6. Área do aluno (`/edicao-magnetica`)
+
+- **Login:** `/edicao-magnetica` (página de senha). **Aulas:** `/edicao-magnetica/aulas`. **Download:** `/edicao-magnetica/baixar`.
+- A senha é conferida no servidor (`api/entrar.js`). Quem acerta ganha um passe por 90 dias. As aulas (`api/_privado/area.html`) e o arquivo da skill (`api/_privado/edicao-dinamica.zip`) NÃO ficam públicos: só abrem com o passe.
+- **Na Vercel** (Settings > Environment Variables): crie `ACESSO_SENHA` com a senha que vai no e-mail (maiúsculas e minúsculas não importam). Depois, Redeploy.
+- **Trocar a senha** (se vazar): mude `ACESSO_SENHA` e faça Redeploy. Todo mundo precisa entrar de novo com a senha nova, então atualize também o e-mail da Cakto.
+- **Contato de suporte:** troque `SEU-CONTATO-AQUI` no fim de `api/_privado/area.html`.
+- **Skill nova?** Substitua `api/_privado/edicao-dinamica.zip` e suba de novo.
+
+**Texto sugerido para o e-mail de entrega da Cakto:**
+
+> Seu acesso chegou!
+> Entre em: https://skill.linikerwambasterr.com.br/edicao-magnetica
+> Senha: (a mesma que está em ACESSO_SENHA)
+> Lá dentro tem o vídeo de 1 minuto, o botão para baixar a skill e o passo a passo para editar o seu primeiro vídeo.
