@@ -23,7 +23,7 @@ vercel.json           cache dos arquivos
 | `vslArquivo` | caminho do vídeo da VSL hospedado aqui mesmo (`/assets/videos/...`) |
 | `liberaEm` | segundo da VSL em que o resto da página aparece (trava de rolagem). `0` = página livre |
 
-**Trava da VSL:** até a VSL chegar em `liberaEm`, a página mostra só o vídeo (não dá para rolar). Quem já liberou uma vez vê tudo na hora quando volta (remarketing), e o link com `?oferta` no final (ex.: `https://skill.linikerwambasterr.com.br/?oferta`) abre liberado e já na oferta: use esse link nos anúncios para quem assistiu 75% ou 95%.
+**Trava da VSL:** até a VSL chegar em `liberaEm`, a página mostra só o vídeo (não dá para rolar). Quem já liberou uma vez vê tudo na hora quando volta (remarketing), e o link com `?oferta` no final (ex.: `https://www.linikerwambasterr.com.br/?oferta`) abre liberado e já na oferta: use esse link nos anúncios para quem assistiu 75% ou 95%.
 
 ## 2. Subir no GitHub e na Vercel
 
@@ -74,18 +74,18 @@ Hoje o domínio principal mostra o seu site de tráfego (Netlify). Para não mex
 2. No Gerenciador de Eventos > **Testar eventos**: devem aparecer `PageView` (navegador e servidor), depois `VSL_Play` e os marcos ao assistir com som, `ViewContent` ao chegar na oferta e `InitiateCheckout` ao clicar em comprar.
 3. Apague `META_TEST_EVENT_CODE` e faça novo deploy.
 
-## 6. Área do aluno (`/edicao-magnetica`)
+## 6. Área do aluno (`/edicao-magnetica`), sem senha: link mágico
 
-- **Login:** `/edicao-magnetica` (página de senha). **Aulas:** `/edicao-magnetica/aulas`. **Download:** `/edicao-magnetica/baixar`.
-- A senha é conferida no servidor (`api/entrar.js`). Quem acerta ganha um passe por 90 dias. As aulas (`api/_privado/area.html`) e o arquivo da skill (`api/_privado/edicao-dinamica.zip`) NÃO ficam públicos: só abrem com o passe.
-- **Na Vercel** (Settings > Environment Variables): crie `ACESSO_SENHA` com a senha que vai no e-mail (maiúsculas e minúsculas não importam). Depois, Redeploy.
-- **Trocar a senha** (se vazar): mude `ACESSO_SENHA` e faça Redeploy. Todo mundo precisa entrar de novo com a senha nova, então atualize também o e-mail da Cakto.
-- **Contato de suporte:** troque `SEU-CONTATO-AQUI` no fim de `api/_privado/area.html`.
+- **Link de acesso:** `https://www.linikerwambasterr.com.br/edicao-magnetica?chave=SUA-CHAVE`, onde SUA-CHAVE é o valor de `ACESSO_SENHA` na Vercel (use só letras e números). A pessoa toca no link, ganha um passe de 90 dias no aparelho e cai direto nas aulas; a chave some da barra de endereço.
+- **Onde usar o link:** na Cakto, em *Upsell e página de obrigado* (a pessoa paga e entra na hora) e no e-mail de entrega.
+- **Sem link:** `/edicao-magnetica` mostra onde achar o acesso e o Instagram de suporte (e um campo de código, só como reserva).
+- **Aulas:** `/edicao-magnetica/aulas`. **Download:** `/edicao-magnetica/baixar`. As aulas (`api/_privado/area.html`) e o arquivo da skill (`api/_privado/edicao-dinamica.zip`) NÃO ficam públicos: só abrem com o passe.
+- **Vazou o link?** Troque `ACESSO_SENHA`, faça Redeploy e atualize o link na Cakto (página de obrigado e e-mail). Quem já entrou precisa entrar de novo pelo link novo.
 - **Skill nova?** Substitua `api/_privado/edicao-dinamica.zip` e suba de novo.
 
 **Texto sugerido para o e-mail de entrega da Cakto:**
 
-> Seu acesso chegou!
-> Entre em: https://skill.linikerwambasterr.com.br/edicao-magnetica
-> Senha: (a mesma que está em ACESSO_SENHA)
-> Lá dentro tem o vídeo de 1 minuto, o botão para baixar a skill e o passo a passo para editar o seu primeiro vídeo.
+> Seu acesso à Edição Dinâmica chegou!
+> Toque aqui para entrar (não precisa de senha): https://www.linikerwambasterr.com.br/edicao-magnetica?chave=SUA-CHAVE
+> A edição acontece no computador: abra este mesmo link nele para baixar a skill. Lá dentro tem o passo a passo e os pedidos prontos para copiar.
+> Travou em algum passo? Me chama no Instagram: @wambasterr_
