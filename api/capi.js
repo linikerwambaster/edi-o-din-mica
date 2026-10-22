@@ -6,8 +6,8 @@
 //   META_TEST_EVENT_CODE Opcional. Código de teste (aba "Testar eventos"); apague depois de testar
 //   META_API_VERSION     Opcional. Versão da Graph API (padrão: v23.0)
 
-// Eventos aceitos: padrão da Meta + retenção da VSL (personalizados, para públicos de remarketing)
-const PERMITIDOS = ["PageView", "ViewContent", "InitiateCheckout", "VSL_Play", "VSL_25", "VSL_50", "VSL_75", "VSL_95"];
+// Eventos aceitos: padrão da Meta (Lead = download de material gratuito) + retenção da VSL (personalizados, para remarketing)
+const PERMITIDOS = ["PageView", "ViewContent", "Lead", "Contact", "InitiateCheckout", "VSL_Play", "VSL_25", "VSL_50", "VSL_75", "VSL_95"];
 
 module.exports = async (req, res) => {
   if (req.method !== "POST") return res.status(405).json({ ok: false, erro: "Use POST" });

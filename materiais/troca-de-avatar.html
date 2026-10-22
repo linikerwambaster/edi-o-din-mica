@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Skill grátis: troca de avatar com IA · Liniker Wambaster</title>
+<meta name="description" content="O passo a passo para fazer a trend da troca de avatar com o Claude Code e o Google Flow: você grava, a IA vira a personagem, no mesmo cenário e no mesmo tempo.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Skill grátis: troca de avatar com IA">
+<meta property="og:image" content="/assets/materiais/troca-de-avatar.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+:root { --tinta: #0B0B0D; --fundo: #070D17; --azul: #2563EB; --ceu: #A9C8FF; --texto: #C9D8E6; --linha: rgba(169,200,255,.16); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--fundo); color: #EAF3FA; font: 17px/1.6 "Inter Tight", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0; z-index: -1; background:
+  radial-gradient(700px 480px at 85% -10%, rgba(37,99,235,.28), transparent 65%), radial-gradient(600px 420px at -10% 100%, rgba(37,99,235,.14), transparent 60%); }
+main { max-width: 760px; margin: 0 auto; padding: 36px max(18px, env(safe-area-inset-left)) 64px; }
+.topo { display: flex; justify-content: space-between; align-items: center; font: 600 13px "JetBrains Mono", monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--ceu); }
+.topo a { color: #fff; text-decoration: none; letter-spacing: .04em; text-transform: none; font: 600 15px "Inter Tight", sans-serif; }
+h1 { margin-top: 34px; font-weight: 800; font-size: clamp(38px, 8vw, 62px); line-height: 1.02; letter-spacing: -.035em; }
+h1 em { font-family: "Instrument Serif", serif; font-style: italic; font-weight: 400; letter-spacing: -.01em;
+        background: linear-gradient(90deg, #6aa5ff, #cfe1ff); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: 6px; }
+.sub { margin-top: 18px; font-size: 19px; color: var(--texto); max-width: 620px; }
+.video { margin-top: 30px; border-radius: 22px; overflow: hidden; border: 1px solid var(--linha); box-shadow: 0 30px 70px rgba(0,0,0,.45), 0 0 80px rgba(37,99,235,.18); background: #000; }
+.video video { display: block; width: 100%; height: auto; }
+.legenda-v { display: flex; justify-content: space-between; padding: 10px 16px; font: 600 12px "JetBrains Mono", monospace; letter-spacing: .12em; color: var(--ceu); background: #0A1424; text-transform: uppercase; }
+.baixar { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 28px; width: 100%; padding: 22px 26px; border-radius: 16px; border: 0; cursor: pointer;
+          background: var(--azul); color: #fff; font: 800 19px "Inter Tight", sans-serif; text-decoration: none; letter-spacing: -.01em; box-shadow: 0 16px 40px rgba(37,99,235,.35); }
+.baixar:hover { filter: brightness(1.08); }
+.baixar small { font: 600 12px "JetBrains Mono", monospace; opacity: .8; letter-spacing: .06em; }
+.nota { margin-top: 10px; text-align: center; font-size: 14px; color: #8EA3B8; }
+h2 { margin-top: 52px; font-weight: 800; font-size: 28px; letter-spacing: -.02em; }
+.passos { margin-top: 18px; display: grid; gap: 14px; counter-reset: p; }
+.passo { position: relative; padding: 20px 22px 20px 70px; border-radius: 16px; border: 1px solid var(--linha); background: rgba(255,255,255,.03); color: var(--texto); }
+.passo::before { counter-increment: p; content: counter(p, decimal-leading-zero); position: absolute; left: 22px; top: 20px; font: 700 17px "JetBrains Mono", monospace; color: var(--ceu); }
+.passo b { color: #fff; }
+code { font: 500 14px "JetBrains Mono", monospace; background: rgba(169,200,255,.10); padding: 2px 7px; border-radius: 6px; color: #dbe7ff; }
+ul.lista { margin-top: 16px; list-style: none; display: grid; gap: 10px; }
+ul.lista li { padding-left: 30px; position: relative; color: var(--texto); }
+ul.lista li::before { content: ""; position: absolute; left: 4px; top: 9px; width: 12px; height: 12px; border-radius: 50%; background: var(--azul); box-shadow: 0 0 0 4px rgba(37,99,235,.2); }
+.ponte { margin-top: 56px; padding: 30px 28px; border-radius: 22px; border: 1px solid rgba(37,99,235,.5); background: linear-gradient(160deg, rgba(37,99,235,.18), rgba(37,99,235,.04)); }
+.ponte h2 { margin-top: 0; }
+.ponte p { margin-top: 10px; color: var(--texto); }
+.ponte a { display: inline-block; margin-top: 18px; padding: 14px 22px; border-radius: 12px; background: #fff; color: var(--tinta); font-weight: 800; text-decoration: none; }
+footer { margin-top: 48px; font-size: 13px; color: #6F8296; text-align: center; }
+footer a { color: #8FB4E8; }
+</style>
+</head>
+<body>
+<main>
+  <div class="topo"><span>Material gratuito</span><a href="https://instagram.com/wambasterr_">@wambasterr_</a></div>
+
+  <h1>A skill da <em>troca de avatar</em> com IA</h1>
+  <p class="sub">Você grava um vídeo seu e o Claude Code devolve o mesmo vídeo com uma personagem de IA no seu lugar: mesmo cenário, mesmos movimentos, mesmo tempo. Com a tela dividida sincronizada pronta pra postar.</p>
+
+  <div class="video">
+    <video src="/assets/materiais/troca-de-avatar.mp4" poster="/assets/materiais/troca-de-avatar.jpg" autoplay muted loop playsinline preload="metadata"></video>
+    <div class="legenda-v"><span>Em cima: eu</span><span>Embaixo: IA</span></div>
+  </div>
+
+  <a class="baixar" id="baixar" href="/assets/materiais/skill-troca-de-avatar-ia.zip" download>Baixar a skill grátis <small>ZIP · 20 KB</small></a>
+  <p class="nota">Funciona no Claude Code (app do Claude, aba Code, ou terminal), no Windows e no Mac.</p>
+
+  <h2>Como instalar</h2>
+  <div class="passos">
+    <div class="passo">Baixe o ZIP e extraia. Dentro tem a pasta <code>troca-de-avatar-ia</code> e o <code>LEIA-ME.md</code>.</div>
+    <div class="passo">Copie a pasta para <code>C:\Users\seu-usuario\.claude\skills\</code> (Windows) ou <code>~/.claude/skills/</code> (Mac). Se a pasta <code>skills</code> não existir, crie.</div>
+    <div class="passo">Abra uma conversa nova no Claude Code e mande: <b>"Quero fazer a trend da troca de avatar com o vídeo X e a imagem Y."</b> Ele te guia no resto, inclusive no Google Flow.</div>
+  </div>
+
+  <h2>O que você precisa</h2>
+  <ul class="lista">
+    <li>Claude Code instalado.</li>
+    <li>Conta Google com acesso ao Google Flow. Cada trecho de ~9 s usa créditos do seu plano Google.</li>
+    <li>ffmpeg e Python (os comandos de instalação estão no LEIA-ME).</li>
+    <li>Uma imagem de personagem criada por IA. Nunca use o rosto de uma pessoa real.</li>
+  </ul>
+
+  <div class="ponte">
+    <h2>Quer editar seus vídeos assim, com motion e efeitos?</h2>
+    <p>A troca de avatar é só uma parte. Com a skill Edição Dinâmica, o Claude Code corta, anima e coloca efeitos sonoros nos seus vídeos, no padrão dos reels que eu posto.</p>
+    <a href="/edicao-ia?utm_source=instagram&utm_medium=dm&utm_campaign=material_troca_avatar">Conhecer a Edição Dinâmica</a>
+  </div>
+
+  <footer>Liniker Wambaster · <a href="/privacidade">Privacidade</a></footer>
+</main>
+
+<script>
+/* Pixel + API de Conversões (mesmo event_id para não contar em dobro). Mesma configuração da página principal. */
+window.LP_CONFIG = { pixelId: "1845495106464453", capi: "/api/capi" };
+(function () {
+  var C = window.LP_CONFIG;
+  var cookie = function (n) { var m = document.cookie.match(new RegExp("(?:^|; )" + n + "=([^;]*)")); return m ? decodeURIComponent(m[1]) : ""; };
+  var fbclid = new URLSearchParams(location.search).get("fbclid");
+  if (fbclid && !cookie("_fbc")) document.cookie = "_fbc=fb.1." + Date.now() + "." + fbclid + "; path=/; max-age=7776000; SameSite=Lax";
+  var pixelOn = false;
+  if (C.pixelId) {
+    !function (f, b, e, v, n, t, s) { if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = "2.0"; n.queue = []; t = b.createElement(e); t.async = !0; t.src = v;
+      s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s); }(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+    fbq("init", C.pixelId); pixelOn = true;
+  }
+  var enviar = function (nome, dados) {
+    var id = nome + "-" + Date.now() + "-" + Math.random().toString(36).slice(2, 9);
+    if (pixelOn) fbq("track", nome, dados || {}, { eventID: id });
+    if (!C.capi) return;
+    var corpo = JSON.stringify({ event_name: nome, event_id: id, event_source_url: location.href, fbp: cookie("_fbp"), fbc: cookie("_fbc"), custom_data: dados || {} });
+    try { navigator.sendBeacon ? navigator.sendBeacon(C.capi, new Blob([corpo], { type: "text/plain;charset=UTF-8" }))
+                               : fetch(C.capi, { method: "POST", body: corpo, keepalive: true }); } catch (e) {}
+  };
+  var material = { content_name: "skill-troca-de-avatar", content_category: "material_gratuito" };
+  enviar("PageView");
+  enviar("ViewContent", material);
+  document.getElementById("baixar").addEventListener("click", function () { enviar("Lead", material); });
+})();
+</script>
+</body>
+</html>

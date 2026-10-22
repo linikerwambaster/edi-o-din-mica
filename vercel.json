@@ -53,5 +53,28 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "oferta"
+        }
+      ],
+      "destination": "/edicao-ia",
+      "permanent": false
+    },
+    {
+      "source": "/vsl",
+      "destination": "/edicao-ia",
+      "permanent": false
+    },
+    {
+      "source": "/skill",
+      "destination": "/edicao-ia",
+      "permanent": false
+    }
   ]
 }
