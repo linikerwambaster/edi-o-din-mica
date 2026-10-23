@@ -164,3 +164,8 @@ details.mais summary { padding: 12px 0; font-size: 15px; }
 .barra-baixo { transform: translateY(110%); transition: transform .35s cubic-bezier(.2, .9, .3, 1); }
 .barra-baixo.ver { transform: none; }
 @media (min-width: 1000px) { .galeria-efeitos { grid-template-columns: repeat(5, 1fr); gap: 14px; } .efeito figcaption { padding: 8px 10px 10px; } .efeito em { font-size: 14px; } .efeito span { font-size: 13px; } }
+
+/* bônus: skill de sites (passos sem o botão de feito) */
+.passo-b { position: relative; padding: 24px 22px 22px 22px; border-radius: 24px; background: var(--painel); border: 1px solid var(--linha); }
+.passo-b p { color: var(--suave); }
+.passo-b h3 { font: 800 clamp(21px, 5vw, 26px)/1.15 var(--display); margin: 6px 0 8px; }
